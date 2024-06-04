@@ -4,11 +4,11 @@
 #include "Defines.h"
 #include "ArgParse.h"
 
-#define F(x) (f(x) - g(x))
-#define F_deriv(x) (f_deriv(x) - g_deriv(x))
 static int sign(double x) {
     return x < 0 ? -1 : 1;
 }
+#define F(x) (f(x) - g(x))
+#define F_deriv(x) (f_deriv(x) - g_deriv(x))
 
 
 //Solve the equation f(x) = g(x) on the interval [a, b]
@@ -42,3 +42,11 @@ double root(mathFunc *f, mathFunc *g, double a, double b, double eps1,
     perror("Root not found");
     return NAN;
 }
+#undef F
+#undef F_deriv
+
+void calcInnacuracy(double actual, double expected, double *absoluteInacr, double *relativeInacr) {
+    *absoluteInacr = fabs(actual - expected);
+    *relativeInacr = *absoluteInacr / expected;
+}
+
