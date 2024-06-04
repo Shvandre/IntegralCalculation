@@ -27,7 +27,7 @@ struct integral_params {
     mathFunc* f;
     double a;
     double b;
-    double eps2;
+    double eps1;
     double result;
 };
 extern struct integral_params integral_params;

@@ -64,24 +64,6 @@ static mathFunc* GetFuncByName(char *name, int deriv) {
         }
         return f3;
     }
-#ifdef TEST
-    else if (strcmp(name, "F4") == 0) {
-        if (deriv) {
-            return f4_deriv;
-        }
-        return f4;
-    } else if (strcmp(name, "F5") == 0) {
-        if (deriv) {
-            return f5_deriv;
-        }
-        return f5;
-    } else if (strcmp(name, "F6") == 0) {
-        if (deriv) {
-            return f6_deriv;
-        }
-        return f6;
-    }
-#endif
     else {
         perror("Met unknown function name while parsing arguments. Exiting...");
         exit(0);
@@ -113,7 +95,7 @@ static void ParseIntegralParams(char *arg) {
     token = strtok(NULL, ":");
     integral_params.b = atof(token);
     token = strtok(NULL, ":");
-    integral_params.eps2 = atof(token);
+    integral_params.eps1 = atof(token);
     token = strtok(NULL, ":");
     integral_params.result = atof(token);
 }
@@ -126,20 +108,20 @@ void ParseArgs(int argc, char **argv) {
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
 
     if (arguments.root) {
-        fprintf(stderr, "Print roots option selected.\n");
+        printf("Print roots option selected.\n");
     }
 
     if (arguments.iterations) {
-        fprintf(stderr, "Print iterations option selected.\n");
+        printf("Print iterations option selected.\n");
     }
 
     if (arguments.test_root) {
-        fprintf(stderr,"Testing root function with parameters: %s\n", arguments.test_root);
+        printf("Testing root function with parameters: %s\n", arguments.test_root);
         ParseRootParams(arguments.test_root);
     }
 
     if (arguments.test_integral) {
-        fprintf(stderr, "Testing integral function with parameters: %s\n", arguments.test_integral);
+        printf("Testing integral function with parameters: %s\n", arguments.test_integral);
         ParseIntegralParams(arguments.test_integral);
     }
 }
