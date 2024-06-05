@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef TEST
+#include "TestFunctions.h"
+#endif
+
 __attribute__ ((cdecl))
 double f1(double x);
 

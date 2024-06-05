@@ -5,9 +5,6 @@
 #include "ArgParse.h"
 
 int main(int argc, char **argv) {
-//    double a = 2.5;
-//    printf("%lf", f1(a));
-//    return 0;
     ParseArgs(argc, argv);
     if(arguments.test_root) {
         double actualRes = root(root_params.f, root_params.g, root_params.a, root_params.b,

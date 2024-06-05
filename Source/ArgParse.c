@@ -64,6 +64,24 @@ static mathFunc* GetFuncByName(char *name, int deriv) {
         }
         return f3;
     }
+#ifdef TEST
+    else if (strcmp(name, "F4") == 0) {
+        if (deriv) {
+            return f4_deriv;
+        }
+        return f4;
+    } else if (strcmp(name, "F5") == 0) {
+        if (deriv) {
+            return f5_deriv;
+        }
+        return f5;
+    } else if (strcmp(name, "F6") == 0) {
+        if (deriv) {
+            return f6_deriv;
+        }
+        return f6;
+    }
+#endif
     else {
         perror("Met unknown function name while parsing arguments. Exiting...");
         exit(0);

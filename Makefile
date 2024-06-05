@@ -1,4 +1,4 @@
-CFLAGS ?= -O0 -g
+CFLAGS ?= -O2 -g
 CFLAGS += -std=gnu99
 CFLAGS += -Wall -Werror -Wformat-security -Wignored-qualifiers -Winit-self \
 	-Wswitch-default -Wpointer-arith -Wtype-limits -Wempty-body \
@@ -10,12 +10,19 @@ CC += -m32 -no-pie -fno-pie
 LDLIBS = -lm
 
 
-OBJS = BuildDir/main.o BuildDir/Tools.o BuildDir/ArgParse.o BuildDir/MathFunctions.o #BuildDir/MathFunctionsC.o
+OBJS = BuildDir/main.o BuildDir/Tools.o BuildDir/ArgParse.o BuildDir/MathFunctions.o BuildDir/TestFunctions.o
 TARGET = integral
 
 all: $(OBJS)
 	mkdir -p BuildDir
 	gcc -m32 -o $(TARGET) $(OBJS) $(LDLIBS)
+
+
+test: CFLAGS += -DTEST
+test: $(OBJS)
+	mkdir -p BuildDir
+	gcc -m32 -o $(TARGET) $(OBJS) $(LDLIBS)
+	python3 Source/Tests.py
 
 # Object files from .asm
 BuildDir/%.o: Source/%.asm
