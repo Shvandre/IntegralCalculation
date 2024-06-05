@@ -95,7 +95,7 @@ static void ParseIntegralParams(char *arg) {
     token = strtok(NULL, ":");
     integral_params.b = atof(token);
     token = strtok(NULL, ":");
-    integral_params.eps1 = atof(token);
+    integral_params.eps2 = atof(token);
     token = strtok(NULL, ":");
     integral_params.result = atof(token);
 }
@@ -108,20 +108,20 @@ void ParseArgs(int argc, char **argv) {
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
 
     if (arguments.root) {
-        printf("Print roots option selected.\n");
+        fprintf(stderr, "Print roots option selected.\n");
     }
 
     if (arguments.iterations) {
-        printf("Print iterations option selected.\n");
+        fprintf(stderr, "Print iterations option selected.\n");
     }
 
     if (arguments.test_root) {
-        printf("Testing root function with parameters: %s\n", arguments.test_root);
+        fprintf(stderr,"Testing root function with parameters: %s\n", arguments.test_root);
         ParseRootParams(arguments.test_root);
     }
 
     if (arguments.test_integral) {
-        printf("Testing integral function with parameters: %s\n", arguments.test_integral);
+        fprintf(stderr, "Testing integral function with parameters: %s\n", arguments.test_integral);
         ParseIntegralParams(arguments.test_integral);
     }
 }
