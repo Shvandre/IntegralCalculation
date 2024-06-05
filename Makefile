@@ -10,10 +10,11 @@ CC += -m32 -no-pie -fno-pie
 LDLIBS = -lm
 
 
-OBJS = BuildDir/main.o BuildDir/Tools.o BuildDir/ArgParse.o BuildDir/MathFunctions.o
+OBJS = BuildDir/main.o BuildDir/Tools.o BuildDir/ArgParse.o BuildDir/MathFunctions.o #BuildDir/MathFunctionsC.o
 TARGET = integral
 
 all: $(OBJS)
+	mkdir -p BuildDir
 	gcc -m32 -o $(TARGET) $(OBJS) $(LDLIBS)
 
 # Object files from .asm
