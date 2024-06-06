@@ -6,22 +6,23 @@ CFLAGS += -Wall -Werror -Wformat-security -Wignored-qualifiers -Winit-self \
 	-Wmissing-parameter-type -Wmissing-field-initializers -Wnested-externs \
 	-Wstack-usage=4096 -Wfloat-equal -Wabsolute-value
 CFLAGS += -fsanitize=undefined -fsanitize-undefined-trap-on-error
-CC += -m32 -no-pie -fno-pie
+CFLAGS += -DTEST
+
+CC += -m32 -no-pie -fno-pieCFLAGS += -DTEST
 LDLIBS = -lm
 
 
 OBJS = BuildDir/main.o BuildDir/Tools.o BuildDir/ArgParse.o BuildDir/MathFunctions.o BuildDir/TestFunctions.o
 TARGET = integral
 
-
-all: make_dir $(OBJS)
+all: $(TARGET)
+$(TARGET): make_dir $(OBJS)
 	gcc -m32 -o $(TARGET) $(OBJS) $(LDLIBS)
 
 make_dir:
 	mkdir -p BuildDir
 
-test: CFLAGS += -DTEST
-test: $(OBJS)
+test: make_dir $(OBJS)
 	mkdir -p BuildDir
 	gcc -m32 -o $(TARGET) $(OBJS) $(LDLIBS)
 	python3 Source/Tests.py
