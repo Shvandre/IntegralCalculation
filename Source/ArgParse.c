@@ -20,6 +20,7 @@ static struct argp_option options[] = {
         {"iterations", 'i', 0, 0, "Print the number of iterations needed.", 0},
         {"test-root", 'R', "F1:F2:A:B:E:R", 0, "Test the root function with parameters.", 0},
         {"test-integral", 'I', "F:A:B:E:R", 0, "Test the integral function with parameters.", 0},
+        {"myhelp", 'h', 0, 0, "Print help.", 0},
         {0}
 };
 
@@ -30,6 +31,9 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state) {
         case 'r':
             my_arg->root = 1;
             break;
+        case 'h':
+            printf("Usage: ./integral [OPTIONS...]\n");
+            exit(0);
         case 'i':
             my_arg->iterations = 1;
             break;
