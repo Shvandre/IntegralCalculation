@@ -73,7 +73,7 @@ f2_deriv:
     fld qword [esp+4]
     fld qword [esp+4]
     fld qword [esp+4]
-    push 3
+    push 5
     fild dword [esp]
     add esp, 4
     fmulp
