@@ -32,7 +32,7 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state) {
             my_arg->root = 1;
             break;
         case 'h':
-            printf("Usage: ./integral [OPTIONS...]\n");
+            argp_usage(state);
             exit(0);
         case 'i':
             my_arg->iterations = 1;
