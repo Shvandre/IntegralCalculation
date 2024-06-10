@@ -99,7 +99,7 @@ static void ParseIntegralParams(char *arg) {
     token = strtok(NULL, ":");
     integral_params.b = atof(token);
     token = strtok(NULL, ":");
-    integral_params.eps1 = atof(token);
+    integral_params.eps2 = atof(token);
     token = strtok(NULL, ":");
     integral_params.result = atof(token);
 }
